@@ -58,17 +58,24 @@ export default {
         email: document.getElementById("email").value,
         password: document.getElementById("passwd").value,
         passwordConfirm: document.getElementById("passwd").value,
-        name: "John Di",
+        name: "Nouvel utilisateur",
       });
       if (currentUser) {
         document.getElementById("status").innerHTML =
-          "Wainting for your email validation ...";
+          "Waiting for your email validation ...";
         await pb
           .collection("users")
           .requestVerification(document.getElementById("email").value);
       }
     },
-  },
+    async logout() {
+
+      await pb
+        .authStore.clear();
+          // currentUser.value = null,
+          document.getElementById("status").innerHTML = "You are now logged out";
+        }
+    }
 };
 </script>
 
@@ -104,7 +111,7 @@ header {
 a,
 .green {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
+  color: rgb(189, 0, 0);
   transition: 0.4s;
 }
 
